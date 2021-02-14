@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Автор{% endblock %}
+
+{% block body %}
+    {{ include('_nav_bar.html.twig', {'page': 'author'}) }}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4 offset-4">
+                <h4 class="mt-2 mb-4">{{ form_label | default('Добавление автора') }}</h4>
+                {{ form(form) }}
+
+                {% if author is defined and author.id %}
+                    <div class="float-right delete-btn">
+                        {{ include('author/_delete_form.html.twig') }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% block body %}
+    {{ form_start(form) }}
+
+    {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.year) }}
+    {{ form_row(form.ISBN) }}
+    {{ form_row(form.pagesNumber) }}
+    {{ form_row(form.authors) }}
+
+    {% if form.cover is defined %}
+        {{ form_row(form.cover) }}
+    {% elseif book is defined %}
+        <div class="form-group">
+            <label for="cover">Обложка</label>
+
+            <div class="row">
+                <div class="col-10">{{ book.cover.name }}</div>
+                <div class="col-2">
+                    <div id="btn-cover" class="btn"
+                         onclick="
+                             if (confirm('Обложка будет удалена')){
+                                 document.getElementById('cover-form').submit();
+                             }
+                         ">
+                        <span>&#10060;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {{ form_end(form) }}
+
+    {% if book is defined and book.cover and book.cover.id %}
+        <form id="cover-form" method="post" action="{{ path('book_cover_delete', {'book_id': book.id, 'image_id': book.cover.id}) }}">
+            <input type="hidden" name="_method" value="DELETE">
+        </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Author index{% endblock %}
+
+{% block body %}
+    {{ include('_nav_bar.html.twig', {'page': 'author'}) }}
+
+    <div class="container-fluid mt-2">
+        <h4 class="d-inline-block">Авторы</h4>
+        <a class="d-inline-block ms-2 btn btn-sm btn-primary float-right" href="{{ path('author_new') }}">Добавить</a>
+
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.name }}</td>
+                    <td>{{ author.surname }}</td>
+                    <td>{{ author.patronymic }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-link" href="{{ path('author_show', {'id': author.id}) }}">Открыть</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Не найдено</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

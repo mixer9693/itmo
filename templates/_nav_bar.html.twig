@@ -1,0 +1,26 @@
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item " >
+                    <a class="nav-link" data-page="homepage" href="{{ path('homepage') }}">Админка</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="book" href="{{ path('book_index') }}">Книги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="author" href="{{ path('author_index') }}">Авторы</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        let page = "{{ page is defined ? page: '' }}"
+        let element = document.querySelector('.navbar-nav [data-page="'+page+'"]');
+        if (element){
+            element.classList.add("active");
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Книги{% endblock %}
+
+{% block body %}
+    {{ include('_nav_bar.html.twig', {'page': 'book'}) }}
+
+    <div class="container-fluid mt-2">
+        <h4 class="d-inline-block">Книги</h4>
+
+        <a class="d-inline-block ms-2 btn btn-sm btn-primary float-right"
+           href="{{ path('book_new') }}">Добавить</a>
+
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Название</th>
+                <th>Год издания</th>
+                <th>ISBN</th>
+                <th>Количество страниц</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.year }}</td>
+                    <td>{{ book.ISBN }}</td>
+                    <td>{{ book.pagesNumber }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-link" href="{{ path('book_show', {'id': book.id}) }}">Открыть</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Не найдено</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}

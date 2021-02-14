@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Книги{% endblock %}
+
+{% block body %}
+    {{ include('_nav_bar.html.twig', {'page': 'book'}) }}
+
+    <div class="container-fluid mt-2">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="d-inline-block">Книга #{{ book.id }}</h4>
+
+                        <a class="d-inline-block btn btn-sm btn-info float-right" href="{{ path('book_edit', {'id': book.id}) }}">Редактировать</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <td>{{ book.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Название</th>
+                                <td>{{ book.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Год выпуска</th>
+                                <td>{{ book.year }}</td>
+                            </tr>
+                            <tr>
+                                <th>ISBN</th>
+                                <td>{{ book.ISBN }}</td>
+                            </tr>
+                            <tr>
+                                <th>Количество страниц</th>
+                                <td>{{ book.pagesNumber }}</td>
+                            </tr>
+                            <tr>
+                                <th>Авторы</th>
+                                <td>
+                                    {% for author in book.authors %}
+                                        <a class="d-block" href="{{ path('author_show', {'id': author.id}) }}">
+                                            {{ author }}
+                                        </a>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6">
+                {% if book.cover %}
+                    <img class="image" width="300" height="400"
+                         src="{{ book.cover.webPath }}"  alt="{{ book.cover.name }}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Author{% endblock %}
+
+{% block body %}
+    {{ include('_nav_bar.html.twig', {'page': 'author'}) }}
+
+    <div class="container-fluid mt-2">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="d-inline-block">Автор #{{ author.id }}</h4>
+                        <a class="d-inline-block btn btn-sm btn-info float-right" href="{{ path('author_edit', {'id': author.id}) }}">Редактировать</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-sm">
+                            <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <td>{{ author.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Имя</th>
+                                <td>{{ author.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Фамилия</th>
+                                <td>{{ author.surname }}</td>
+                            </tr>
+                            <tr>
+                                <th>Отвечтво</th>
+                                <td>{{ author.patronymic }}</td>
+                            </tr>
+                            <tr>
+                                <th>Книги</th>
+                                <td>
+                                    {% for book in author.books %}
+                                        <a class="d-block" href="{{ path('book_show', {'id': book.id}) }}">{{ book.name }}</a>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

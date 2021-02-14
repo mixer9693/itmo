@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Админка{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        {% block stylesheets  %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+        <style>
+            body {
+                font-family: -apple-system, serif;
+            }
+            .footer {
+                padding-top: 60px;
+            }
+            .delete-btn {
+                z-index: 10;
+                margin-top: -46px;
+            }
+            .image {
+                border: 1px solid grey;
+                border-radius: 5px;
+                box-shadow: 0 0 10px #999999;
+            }
+        </style>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        <div class="footer"></div>
+    </body>
+</html>

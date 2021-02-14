@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Книги{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            bsCustomFileInput.init()
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    {{ include('_nav_bar.html.twig', {'page': 'book'}) }}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4 offset-4">
+                <h4 class="mt-2 mb-4">{{ form_label | default('Добавление книги') }}</h4>
+                {{ include('book/_form.html.twig') }}
+
+                {% if book is defined and book.id %}
+                    <div class="float-right delete-btn">
+                        {{ include('book/_delete_form.html.twig') }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
