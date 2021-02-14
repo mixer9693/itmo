@@ -8,6 +8,5 @@
 /var/
 /vendor/
 /public/image
-composer.phar
 .idea
 ###< symfony/framework-bundle ###
