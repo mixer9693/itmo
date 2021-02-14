@@ -46,7 +46,7 @@ class BookType extends AbstractType
             ])
             ->add('cover', ImageType::class, [
                 'label' => 'Обложка',
-                'data' => $data->getCover() ?? null,
+                'data' => $data->getCover() ? $data->getCover(): null,
                 'required' => false
             ])
             ->add('submit', SubmitType::class, [
