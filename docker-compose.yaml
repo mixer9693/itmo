@@ -1,0 +1,14 @@
+version: "2.2"
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: itmo
+      MYSQL_USER: itmo
+      MYSQL_PASSWORD: 192470
+    ports:
+    - 3306:3306
